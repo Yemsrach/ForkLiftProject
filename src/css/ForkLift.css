@@ -1,0 +1,371 @@
+/* Global styles */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #1a202c; /* Equivalent to bg-gray-900 */
+  color: white; /* Equivalent to text-white */
+}
+
+/* App Layout styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem; /* Equivalent to p-4 */
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem; /* Equivalent to mb-8 */
+}
+
+.app-header h1 {
+  font-size: 2.25rem; /* Equivalent to text-4xl */
+  font-weight: 700; /* Equivalent to font-bold */
+}
+
+.main-content {
+  flex: 1; /* Equivalent to flex-1 */
+  display: grid;
+  grid-template-columns: 1fr; /* Equivalent to grid-cols-1 */
+  gap: 2rem; /* Equivalent to gap-8 */
+  margin-bottom: 2rem; /* Equivalent to mb-8 */
+}
+
+@media (min-width: 768px) {
+  /* Equivalent to md:grid-cols-2 */
+  .main-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.video-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-section h2 {
+  font-size: 1.5rem; /* Equivalent to text-2xl */
+  font-weight: 600; /* Equivalent to font-semibold */
+  margin-bottom: 1rem; /* Equivalent to mb-4 */
+}
+
+.app-footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* Video Player styles */
+.video-player-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem; /* Equivalent to rounded-lg */
+  aspect-ratio: 16 / 9; /* Equivalent to aspect-video */
+  background-color: black; /* Equivalent to bg-black */
+  /* Add perspective for 3D transforms */
+  perspective: 1000px;
+}
+
+.video-title-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 1rem; /* Equivalent to p-4 */
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  color: white;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent); /* Equivalent to bg-gradient-to-b from-black/50 to-transparent */
+  z-index: 10; /* Equivalent to z-10 */
+}
+
+.video-title-overlay div {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Equivalent to line-clamp-1 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: none; /* Equivalent to object-none */
+  /* Ensure transforms are applied */
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out; /* Smooth transitions for pan/tilt/zoom */
+}
+
+.video-controls-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  gap: 0.5rem; /* Equivalent to gap-2 */
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5)); /* Equivalent to bg-gradient-to-b from-transparent to-black/50 */
+  z-index: 10; /* Equivalent to z-10 */
+}
+
+.video-controls-overlay .slider-wrapper {
+  padding-left: 0.5rem; /* Equivalent to px-2 */
+  padding-right: 0.5rem; /* Equivalent to px-2 */
+}
+
+.video-controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Equivalent to gap-3 */
+  padding: 0.75rem; /* Equivalent to p-3 */
+  padding-top: 0; /* Equivalent to pt-0 */
+  color: white;
+}
+
+.video-controls-bar svg {
+  color: white; /* Equivalent to [&_svg]:text-white */
+}
+
+.video-time-display {
+  font-size: 0.875rem; /* Equivalent to text-sm */
+}
+
+.video-fullscreen-button {
+  margin-left: auto; /* Equivalent to ml-auto */
+}
+
+/* Custom Button Styles */
+.custom-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem; /* rounded-md */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  height: 2.5rem; /* h-10 */
+  padding: 0 1rem; /* px-4 */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+  background-color: #3b82f6; /* bg-blue-500 */
+  color: white;
+}
+
+.custom-button:hover {
+  background-color: #2563eb; /* hover:bg-blue-600 */
+}
+
+.custom-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Specific button styles for video controls */
+.custom-button.icon-button {
+  width: 2.25rem; /* w-9 */
+  height: 2.25rem; /* h-9 */
+  padding: 0;
+  border-radius: 9999px; /* rounded-full */
+  background-color: transparent;
+  color: white;
+}
+
+.custom-button.icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.3); /* hover:bg-black/50 */
+}
+
+/* Custom Slider Styles */
+.custom-slider-container {
+  position: relative;
+  width: 100%;
+  height: 0.25rem; /* h-1 */
+  background-color: rgba(255, 255, 255, 0.3); /* bg-white/30 */
+  border-radius: 0.125rem; /* rounded-full */
+  cursor: pointer;
+}
+
+.custom-slider-fill {
+  position: absolute;
+  height: 100%;
+  background-color: #ef4444; /* bg-red-500 */
+  border-radius: 0.125rem;
+}
+
+.custom-slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.75rem; /* w-3 */
+  height: 0.75rem; /* h-3 */
+  background-color: white;
+  border-radius: 9999px; /* rounded-full */
+  cursor: grab;
+  transition: transform 0.1s ease-in-out;
+}
+
+.custom-slider-thumb:active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.1); /* scale-105 */
+}
+
+/* Specific slider styles for volume */
+.custom-slider-container.volume .custom-slider-fill {
+  background-color: white;
+}
+
+/* New styles for the circular remote controller */
+.remote-controller-container {
+  position: relative;
+  width: 20rem; /* Fixed width for the circular remote */
+  height: 20rem; /* Fixed height for the circular remote */
+  border-radius: 50%;
+  background-color: #374151; /* bg-gray-700 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 2px solid #4b5563; /* border-gray-600 */
+}
+
+.remote-center-area {
+  position: relative;
+  width: 10rem; /* Smaller inner circle */
+  height: 10rem;
+  border-radius: 50%;
+  background-color: #4b5563; /* bg-gray-600 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #6b7280; /* border-gray-500 */
+}
+
+/* Common button styles for remote */
+.remote-button {
+  position: absolute;
+  width: 3.5rem; /* Larger buttons for outer D-pad */
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #6b7280; /* bg-gray-500 */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.remote-button:hover {
+  background-color: #4b5563; /* hover:bg-gray-600 */
+}
+
+.remote-button svg {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+}
+
+/* Outer D-pad positioning (Tilt & Roll) */
+.remote-button.outer-up {
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.remote-button.outer-down {
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.remote-button.outer-left {
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.remote-button.outer-right {
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Inner D-pad positioning (Pan & Fine-Tune Tilt) */
+.remote-button.inner-up {
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.5rem; /* Smaller buttons for inner D-pad */
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+.remote-button.inner-down {
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+.remote-button.inner-left {
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+.remote-button.inner-right {
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+
+.remote-button.inner-up:hover,
+.remote-button.inner-down:hover,
+.remote-button.inner-left:hover,
+.remote-button.inner-right:hover {
+  background-color: #4b5563;
+}
+
+/* New Zoom button positioning on outer circle */
+.remote-button.zoom-in-outer {
+  top: 2.5rem; /* Adjusted to be between up and right/left */
+  right: 2.5rem;
+  width: 2.5rem; /* Smaller size for zoom buttons */
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+.remote-button.zoom-in-outer:hover {
+  background-color: #4b5563;
+}
+
+.remote-button.zoom-out-outer {
+  top: 2.5rem; /* Adjusted to be between up and right/left */
+  left: 2.5rem;
+  width: 2.5rem; /* Smaller size for zoom buttons */
+  height: 2.5rem;
+  background-color: #5a626e;
+}
+.remote-button.zoom-out-outer:hover {
+  background-color: #4b5563;
+}
+
+/* Center Controls: Only Reset All now */
+.remote-center-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.remote-button.reset-all {
+  width: 3rem;
+  height: 3rem;
+  background-color: #dc2626; /* bg-red-600 */
+  border-radius: 50%;
+}
+.remote-button.reset-all:hover {
+  background-color: #b91c1c; /* hover:bg-red-700 */
+}
