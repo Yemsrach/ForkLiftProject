@@ -73,3 +73,6 @@ dmypy.json
 
 # VS Code Python stuff
 .python-version
+
+# Ignore video files
+*.mp4
